@@ -7,7 +7,7 @@ namespace DbQueryBuilder
     /// <summary>
     /// Query builder for block WHERE in SQL
     /// </summary>
-    internal sealed class QueryBuilderWhere : IQueryBuilderWhere
+    internal sealed class MsSqlQueryBuilderWhere : IQueryBuilderWhere
     {
         #region Private fields
         private readonly IQueryQuotes _quotes;
@@ -20,7 +20,7 @@ namespace DbQueryBuilder
         #endregion
 
         #region Ctor
-        public QueryBuilderWhere(IQueryQuotes quotes)
+        public MsSqlQueryBuilderWhere(IQueryQuotes quotes)
         {
             _quotes = quotes ?? throw new ArgumentNullException("quotes");
         }

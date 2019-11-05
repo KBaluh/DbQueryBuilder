@@ -34,7 +34,7 @@ namespace DbQueryBuilder.MsSql
         public IQueryBuilderWhere CreateWhere()
         {
             var quotes = CreateQueryQuotes();
-            return new QueryBuilderWhere(quotes);
+            return new MsSqlQueryBuilderWhere(quotes);
         }
     }
 }
