@@ -12,18 +12,23 @@ namespace DbQueryBuilder
         void Connect();
         void Disconnect();
 
-        IDataReader ExecuteResultQuery(IQueryBuilderSelect queryBuilder);
-        void CloseDataReader(IDataReader dataReader);
-
-        IDataAdapter GetDataAdapter(IQueryBuilderSelect queryBuilder);
+        void BeginTransaction();
+        void CommitTransaction();
+        void Rollback();
 
         IDbCommand CreateCommand();
         IDataParameter CreateParameter();
 
-        void BeginTransaction();
+        IDataAdapter GetDataAdapter(IQueryBuilderSelect queryBuilder);
+        IDataReader ExecuteResultQuery(IQueryBuilderSelect queryBuilder);
+        void CloseDataReader(IDataReader dataReader);
 
-        void CommitTransaction();
+        bool ExecuteQuery(IQueryBuilderInsert queryBuilder);
+        bool ExecuteQuery(IQueryBuilderUpdate queryBuilder);
+        bool ExecuteQuery(IQueryBuilderDelete queryBuilder);
 
-        void Rollback();
+        bool ExecuteNonQuery(IQueryBuilderInsert queryBuilder);
+        bool ExecuteNonQuery(IQueryBuilderUpdate queryBuilder);
+        bool ExecuteNonQuery(IQueryBuilderDelete queryBuilder);
     }
 }

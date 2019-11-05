@@ -7,6 +7,7 @@ namespace DbQueryBuilder.MsSql
     public class MsSqlDatabase : IDatabase
     {
         #region Private fields
+
         private SqlConnection _connection;
         private readonly string _connectionString;
 
@@ -56,6 +57,38 @@ namespace DbQueryBuilder.MsSql
             }
         }
 
+        public void BeginTransaction()
+        {
+            _transaction = _connection.BeginTransaction();
+        }
+
+        public void CommitTransaction()
+        {
+            _transaction.Commit();
+        }
+
+        public void Rollback()
+        {
+            _transaction.Rollback();
+        }
+
+        public IDbCommand CreateCommand()
+        {
+            IDbCommand command = new SqlCommand();
+            return command;
+        }
+
+        public IDataParameter CreateParameter()
+        {
+            IDataParameter parameter = new SqlParameter();
+            return parameter;
+        }
+
+        public IDataAdapter GetDataAdapter(IQueryBuilderSelect queryBuilder)
+        {
+            return GetDataAdapter(queryBuilder.ToString());
+        }
+
         public IDataReader ExecuteResultQuery(IQueryBuilderSelect queryBuilder)
         {
             return ExecuteResultQuery(queryBuilder.ToString());
@@ -77,36 +110,34 @@ namespace DbQueryBuilder.MsSql
             dataReader.Dispose();
         }
 
-        public IDataAdapter GetDataAdapter(IQueryBuilderSelect queryBuilder)
+        public bool ExecuteQuery(IQueryBuilderInsert queryBuilder)
         {
-            return GetDataAdapter(queryBuilder.ToString());
+            return ExecuteQuery(queryBuilder.GetCommand());
         }
 
-        public IDbCommand CreateCommand()
+        public bool ExecuteQuery(IQueryBuilderUpdate queryBuilder)
         {
-            IDbCommand command = new SqlCommand();
-            return command;
+            return ExecuteQuery(queryBuilder.GetCommand());
         }
 
-        public IDataParameter CreateParameter()
+        public bool ExecuteQuery(IQueryBuilderDelete queryBuilder)
         {
-            IDataParameter parameter = new SqlParameter();
-            return parameter;
+            return ExecuteQuery(queryBuilder.GetCommand());
         }
 
-        public void BeginTransaction()
+        public bool ExecuteNonQuery(IQueryBuilderInsert queryBuilder)
         {
-            _transaction = _connection.BeginTransaction();
+            return ExecuteNonQuery(queryBuilder.GetCommand());
         }
 
-        public void CommitTransaction()
+        public bool ExecuteNonQuery(IQueryBuilderUpdate queryBuilder)
         {
-            _transaction.Commit();
+            return ExecuteNonQuery(queryBuilder.GetCommand());
         }
 
-        public void Rollback()
+        public bool ExecuteNonQuery(IQueryBuilderDelete queryBuilder)
         {
-            _transaction.Rollback();
+            return ExecuteNonQuery(queryBuilder.GetCommand());
         }
 
         #endregion
