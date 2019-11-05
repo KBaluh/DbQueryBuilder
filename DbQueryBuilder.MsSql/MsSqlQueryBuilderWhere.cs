@@ -80,6 +80,42 @@ namespace DbQueryBuilder
             return this;
         }
 
+        public IQueryBuilderWhere Like(string whereField, object whereValue)
+        {
+            AppendLike(whereField, whereValue, string.Empty);
+            return this;
+        }
+
+        public IQueryBuilderWhere LikeAnd(string whereField, object whereValue)
+        {
+            AppendLike(whereField, whereValue, "AND");
+            return this;
+        }
+
+        public IQueryBuilderWhere LikeOr(string whereField, object whereValue)
+        {
+            AppendLike(whereField, whereValue, "OR");
+            return this;
+        }
+
+        public IQueryBuilderWhere NotLike(string whereField, object whereValue)
+        {
+            AppendNotLike(whereField, whereValue, string.Empty);
+            return this;
+        }
+
+        public IQueryBuilderWhere NotLikeAnd(string whereField, object whereValue)
+        {
+            AppendNotLike(whereField, whereValue, "AND");
+            return this;
+        }
+
+        public IQueryBuilderWhere NotLikeOr(string whereField, object whereValue)
+        {
+            AppendNotLike(whereField, whereValue, "OR");
+            return this;
+        }
+
         public override string ToString()
         {
             string baseWhere = string.Empty;
@@ -110,17 +146,6 @@ namespace DbQueryBuilder
 
         #region Private methods
 
-        private void AppendWhere(IQueryBuilderWhere whereQuery, string joinOperation)
-        {
-            if (string.IsNullOrWhiteSpace(whereQuery.ToString()))
-            {
-                return;
-            }
-
-            string where = string.Format(" {0} ({1})", joinOperation, whereQuery);
-            _whereStrings.Add(where);
-        }
-
         private void AppendString(string whereField, string operand,
             object whereValue, string joinOperation)
         {
@@ -140,6 +165,30 @@ namespace DbQueryBuilder
                               joinOperation, whereField, operand, whereValue, _quotes.FieldQuote);
             }
             _whereStrings.Add(where);
+        }
+
+        private void AppendWhere(IQueryBuilderWhere whereQuery, string joinOperation)
+        {
+            if (string.IsNullOrWhiteSpace(whereQuery.ToString()))
+            {
+                return;
+            }
+
+            string where = string.Format(" {0} ({1})", joinOperation, whereQuery);
+            _whereStrings.Add(where);
+        }
+
+        private void AppendLike(string whereField, object whereValue, string joinOperation, string likeCondition = "LIKE")
+        {
+            string formatValue = string.Format("'%{0}%'", whereValue);
+            string like = string.Format(" {0} ({1} {2} {3}) ",
+                joinOperation, whereField, likeCondition, formatValue);
+            _whereStrings.Add(like);
+        }
+
+        private void AppendNotLike(string whereField, object whereValue, string joinOperation)
+        {
+            AppendLike(whereField, whereValue, joinOperation, "NOT LIKE");
         }
 
         #endregion
