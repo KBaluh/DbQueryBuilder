@@ -1,4 +1,6 @@
-﻿namespace DbQueryBuilder.Databases
+﻿using DbQueryBuilder.Queries;
+
+namespace DbQueryBuilder.Databases
 {
     /// <summary>
     /// Database query executer
@@ -25,6 +27,8 @@
         public abstract void Connnect();
 
         public abstract void Disconnect();
+
+        public abstract IQueryQuotes GetQueryQuotes();
 
         #endregion
     }

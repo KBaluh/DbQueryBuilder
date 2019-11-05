@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 
 using DbQueryBuilder.Databases;
+using DbQueryBuilder.Queries;
 
 namespace DbQueryBuilder.MsSql
 {
@@ -9,11 +10,13 @@ namespace DbQueryBuilder.MsSql
     {
         private SqlConnection _connection;
         private readonly string _connectionString;
+        private readonly IQueryQuotes _queryQuotes;
 
         public MsSqlDatabase(string connectionString) 
             : base(Databases.DbType.MsSql)
         {
             _connectionString = connectionString;
+            _queryQuotes = new MsSqlQueryQuotes();
         }
 
         public override void Connnect()
@@ -39,6 +42,11 @@ namespace DbQueryBuilder.MsSql
             {
                 _connection.Close();
             }
+        }
+
+        public override IQueryQuotes GetQueryQuotes()
+        {
+            return _queryQuotes;
         }
 
         private SqlConnection CreateConnection()
