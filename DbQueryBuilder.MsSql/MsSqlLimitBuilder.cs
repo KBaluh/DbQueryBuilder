@@ -1,6 +1,6 @@
 ﻿namespace DbQueryBuilder.Queries
 {
-    public class MsSqlLimitBuilder : ILimitBuilder
+    internal sealed class MsSqlLimitBuilder : ILimitBuilder
     {
         #region Public properties
 

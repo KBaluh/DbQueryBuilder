@@ -4,7 +4,7 @@ using DbQueryBuilder.MsSql;
 
 namespace DbQueryBuilder
 {
-    public class MsSqlQueryBuilderSelect : IQueryBuilderSelect
+    internal sealed class MsSqlQueryBuilderSelect : IQueryBuilderSelect
     {
         #region Database fields
         private MsSqlDatabase Database { get; }

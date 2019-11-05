@@ -2,7 +2,7 @@
 
 namespace DbQueryBuilder.MsSql
 {
-    public class MsSqlQueryFactory : IQueryFactory
+    internal sealed class MsSqlQueryFactory : IQueryFactory
     {
         private readonly MsSqlDatabase _database;
 
