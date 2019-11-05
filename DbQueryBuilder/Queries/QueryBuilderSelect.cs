@@ -23,9 +23,9 @@ namespace DbQueryBuilder.Queries
 
         private string _customWhere = "";
 
-        private readonly QueryBuilderWhere _builderWhere;
+        private readonly IQueryBuilderWhere _builderWhere;
 
-        private readonly List<QueryBuilderWhere> _builderWheres = new List<QueryBuilderWhere>();
+        private readonly List<IQueryBuilderWhere> _builderWheres = new List<IQueryBuilderWhere>();
 
         #endregion
 
@@ -65,7 +65,7 @@ namespace DbQueryBuilder.Queries
             _customWhere = customWhere;
         }
         
-        public void Where(QueryBuilderWhere where)
+        public void Where(IQueryBuilderWhere where)
         {
             int index = _builderWheres.IndexOf(where);
             if (index == -1)
@@ -78,13 +78,13 @@ namespace DbQueryBuilder.Queries
             }
         }
 
-        public QueryBuilderWhere Where(string whereField, object whereValue)
+        public IQueryBuilderWhere Where(string whereField, object whereValue)
         {
             _builderWhere.Where(whereField, whereValue);
             return _builderWhere;
         }
 
-        public QueryBuilderWhere Where(string whereField, string operand, object whereValue)
+        public IQueryBuilderWhere Where(string whereField, string operand, object whereValue)
         {
             _builderWhere.Where(whereField, operand, whereValue);
             return _builderWhere;

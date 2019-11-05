@@ -7,7 +7,7 @@ namespace DbQueryBuilder.Queries
     /// <summary>
     /// Query builder for block WHERE in SQL
     /// </summary>
-    public class QueryBuilderWhere
+    public class QueryBuilderWhere : IQueryBuilderWhere
     {
         #region Private fields
         private readonly IQueryQuotes _quotes;
@@ -28,7 +28,7 @@ namespace DbQueryBuilder.Queries
 
         #region Public methods
 
-        public QueryBuilderWhere Where(string whereField, object whereValue)
+        public IQueryBuilderWhere Where(string whereField, object whereValue)
         {
             _whereField = whereField;
             _whereValue = whereValue;
@@ -36,7 +36,7 @@ namespace DbQueryBuilder.Queries
             return this;
         }
 
-        public QueryBuilderWhere Where(string whereField, string operand, object whereValue)
+        public IQueryBuilderWhere Where(string whereField, string operand, object whereValue)
         {
             _whereField = whereField;
             _whereOperand = operand;
@@ -44,37 +44,37 @@ namespace DbQueryBuilder.Queries
             return this;
         }
 
-        public QueryBuilderWhere And(string whereField, object whereValue)
+        public IQueryBuilderWhere And(string whereField, object whereValue)
         {
             AppendString(whereField, "=", whereValue, "AND");
             return this;
         }
 
-        public QueryBuilderWhere And(string whereField, string operand, object whereValue)
+        public IQueryBuilderWhere And(string whereField, string operand, object whereValue)
         {
             AppendString(whereField, operand, whereValue, "AND");
             return this;
         }
 
-        public QueryBuilderWhere And(QueryBuilderWhere where)
+        public IQueryBuilderWhere And(IQueryBuilderWhere where)
         {
             AppendWhere(where, "AND");
             return this;
         }
 
-        public QueryBuilderWhere Or(string whereField, object whereValue)
+        public IQueryBuilderWhere Or(string whereField, object whereValue)
         {
             AppendString(whereField, "=", whereValue, "OR");
             return this;
         }
 
-        public QueryBuilderWhere Or(string whereField, string operand, object whereValue)
+        public IQueryBuilderWhere Or(string whereField, string operand, object whereValue)
         {
             AppendString(whereField, operand, whereValue, "OR");
             return this;
         }
 
-        public QueryBuilderWhere Or(QueryBuilderWhere where)
+        public IQueryBuilderWhere Or(IQueryBuilderWhere where)
         {
             AppendWhere(where, "OR");
             return this;
@@ -110,7 +110,7 @@ namespace DbQueryBuilder.Queries
 
         #region Private methods
 
-        private void AppendWhere(QueryBuilderWhere whereQuery, string joinOperation)
+        private void AppendWhere(IQueryBuilderWhere whereQuery, string joinOperation)
         {
             if (string.IsNullOrWhiteSpace(whereQuery.ToString()))
             {

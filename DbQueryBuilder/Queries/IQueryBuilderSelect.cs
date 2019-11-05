@@ -29,14 +29,14 @@
         /// Adding where builder into inner where filters
         /// </summary>
         /// <param name="where"></param>
-        void Where(QueryBuilderWhere where);
+        void Where(IQueryBuilderWhere where);
 
         /// <summary>
         /// Adding condition of Where block
         /// </summary>
         /// <param name="whereField">Field for filtering</param>
         /// <param name="whereValue">Value</param>
-        QueryBuilderWhere Where(string whereField, object whereValue);
+        IQueryBuilderWhere Where(string whereField, object whereValue);
 
         /// <summary>
         /// Adding condition of Where block with custom operand
@@ -44,6 +44,6 @@
         /// <param name="whereField">Field for filtering</param>
         /// <param name="operand">Operand</param>
         /// <param name="whereValue">Value</param>
-        QueryBuilderWhere Where(string whereField, string operand, object whereValue);
+        IQueryBuilderWhere Where(string whereField, string operand, object whereValue);
     }
 }
