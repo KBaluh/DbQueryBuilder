@@ -12,7 +12,6 @@ namespace DbQueryBuilder.MsSql
 
         private readonly Dictionary<IDataReader, SqlConnection> _readerConnections = new Dictionary<IDataReader, SqlConnection>();
 
-        internal IQueryFactory QueryFactory { get; }
         #endregion
 
         #region Ctor
@@ -27,6 +26,8 @@ namespace DbQueryBuilder.MsSql
         #endregion
 
         #region IDatabase implementation
+
+        public IQueryFactory QueryFactory { get; }
 
         public void Connect()
         {

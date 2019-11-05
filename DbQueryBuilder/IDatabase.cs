@@ -7,6 +7,8 @@ namespace DbQueryBuilder
     /// </summary>
     public interface IDatabase
     {
+        IQueryFactory QueryFactory { get; }
+
         void Connect();
         void Disconnect();
 
