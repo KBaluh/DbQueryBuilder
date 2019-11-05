@@ -45,5 +45,20 @@
         /// <param name="operand">Operand</param>
         /// <param name="whereValue">Value</param>
         IQueryBuilderWhere Where(string whereField, string operand, object whereValue);
+
+        /// <summary>
+        /// Join table by join type
+        /// </summary>
+        /// <param name="joinType"></param>
+        /// <param name="tableName"></param>
+        /// <param name="tableField"></param>
+        /// <param name="joinField"></param>
+        void Join(SelectJoinType joinType, string tableName, string tableField, string joinField);
+
+        /// <summary>
+        /// Set join builder
+        /// </summary>
+        /// <param name="join"></param>
+        void Join(JoinBuilder join);
     }
 }

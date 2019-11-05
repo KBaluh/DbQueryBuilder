@@ -17,6 +17,8 @@ namespace DbQueryBuilder.Queries
 
         private string _from = string.Empty;
 
+        private readonly List<JoinBuilder> _joins = new List<JoinBuilder>();
+
         #endregion
 
         #region Where
@@ -88,6 +90,21 @@ namespace DbQueryBuilder.Queries
         {
             _builderWhere.Where(whereField, operand, whereValue);
             return _builderWhere;
+        }
+
+        public void Join(SelectJoinType joinType, string tableName, string tableField, string joinField)
+        {
+            JoinBuilder builder = new JoinBuilder();
+            builder.Join(joinType, tableName, tableField, joinField);
+            _joins.Add(builder);
+        }
+
+        public void Join(JoinBuilder join)
+        {
+            if (!_joins.Contains(join))
+            {
+                _joins.Add(join);
+            }
         }
 
         #endregion
