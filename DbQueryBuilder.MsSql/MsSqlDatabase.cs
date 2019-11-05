@@ -1,25 +1,23 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-using DbQueryBuilder.Databases;
-using DbQueryBuilder.Queries;
-
 namespace DbQueryBuilder.MsSql
 {
-    public class MsSqlDatabase : Database
+    public class MsSqlDatabase : IDatabase
     {
         private SqlConnection _connection;
         private readonly string _connectionString;
-        private readonly IQueryQuotes _queryQuotes;
 
-        public MsSqlDatabase(string connectionString) 
-            : base(Databases.DbType.MsSql)
+        public MsSqlDatabase(string connectionString)
         {
             _connectionString = connectionString;
-            _queryQuotes = new MsSqlQueryQuotes();
+
+            QueryFactory = new MsSqlQueryFactory(this);
         }
 
-        public override void Connnect()
+        public IQueryFactory QueryFactory { get; }
+
+        public void Connnect()
         {
             if (_connection == null)
             {
@@ -32,7 +30,7 @@ namespace DbQueryBuilder.MsSql
             }
         }
 
-        public override void Disconnect()
+        public void Disconnect()
         {
             if (_connection == null)
             {
@@ -42,11 +40,6 @@ namespace DbQueryBuilder.MsSql
             {
                 _connection.Close();
             }
-        }
-
-        public override IQueryQuotes GetQueryQuotes()
-        {
-            return _queryQuotes;
         }
 
         private SqlConnection CreateConnection()

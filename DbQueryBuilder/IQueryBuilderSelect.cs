@@ -1,4 +1,4 @@
-﻿namespace DbQueryBuilder.Queries
+﻿namespace DbQueryBuilder
 {
     public interface IQueryBuilderSelect
     {
@@ -59,6 +59,18 @@
         /// Set join builder
         /// </summary>
         /// <param name="join"></param>
-        void Join(JoinBuilder join);
+        void Join(IJoinBuilder join);
+
+        /// <summary>
+        /// Build full query for get items count
+        /// </summary>
+        /// <returns></returns>
+        IQueryBuilderSelect GetQueryCount();
+
+        /// <summary>
+        /// Build full query
+        /// </summary>
+        /// <returns></returns>
+        string ToString();
     }
 }

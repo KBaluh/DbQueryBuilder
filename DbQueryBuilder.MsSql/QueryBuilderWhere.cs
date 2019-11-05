@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DbQueryBuilder.Queries
+namespace DbQueryBuilder
 {
     /// <summary>
     /// Query builder for block WHERE in SQL
@@ -96,7 +96,7 @@ namespace DbQueryBuilder.Queries
                                               _whereField,
                                               _whereOperand,
                                               _whereValue,
-                                              _quotes.GetFieldQuote());
+                                              _quotes.FieldQuote);
                 }
             }
 
@@ -137,7 +137,7 @@ namespace DbQueryBuilder.Queries
             else
             {
                 where = string.Format(" {0} ({1} {2} {4}{3}{4})",
-                              joinOperation, whereField, operand, whereValue, _quotes.GetFieldQuote());
+                              joinOperation, whereField, operand, whereValue, _quotes.FieldQuote);
             }
             _whereStrings.Add(where);
         }

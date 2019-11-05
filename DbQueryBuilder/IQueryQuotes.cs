@@ -1,4 +1,4 @@
-﻿namespace DbQueryBuilder.Queries
+﻿namespace DbQueryBuilder
 {
     public interface IQueryQuotes
     {
@@ -6,12 +6,12 @@
         /// Each database has own quotes for insert e.g. " or '
         /// </summary>
         /// <returns></returns>
-        string GetInsertFieldQuote();
+        string InsertFieldQuote { get; }
 
         /// <summary>
         /// Each database has own quetes for field incapsulations e.g. " or '
         /// </summary>
         /// <returns></returns>
-        string GetFieldQuote();
+        string FieldQuote { get; }
     }
 }

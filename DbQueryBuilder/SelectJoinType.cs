@@ -1,4 +1,4 @@
-﻿namespace DbQueryBuilder.Queries
+﻿namespace DbQueryBuilder
 {
     public enum SelectJoinType
     {

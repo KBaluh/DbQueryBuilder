@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DbQueryBuilder.Queries
+namespace DbQueryBuilder.MsSql
 {
-    public class JoinBuilder : IJoinBuilder
+    public class MsSqlJoinBuilder : IJoinBuilder
     {
         private SelectJoinType _joinType;
 
@@ -30,7 +30,7 @@ namespace DbQueryBuilder.Queries
                     join = "INNER JOIN";
                     break;
                 default:
-                    throw new Exception("Unklow join type");
+                    throw new Exception("Unknown join type");
             }
 
             // LEFT OUTER JOINT tbl_TestJoinTable ON tbl_TestFromTable.TestJoinID = tbl_TestJoinTable.ID

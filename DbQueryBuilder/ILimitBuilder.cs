@@ -1,4 +1,4 @@
-﻿namespace DbQueryBuilder.Queries
+﻿namespace DbQueryBuilder
 {
     public interface ILimitBuilder
     {
