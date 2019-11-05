@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DbQueryBuilder.MsSql
 {
-    internal class MsSqlQueryBuilderInsert : IQueryBuilderInsert
+    public sealed class MsSqlQueryBuilderInsert : IQueryBuilderInsert
     {
         private string _tableName;
 

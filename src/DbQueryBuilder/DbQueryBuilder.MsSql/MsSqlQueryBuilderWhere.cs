@@ -7,7 +7,7 @@ namespace DbQueryBuilder
     /// <summary>
     /// Query builder for block WHERE in SQL
     /// </summary>
-    internal sealed class MsSqlQueryBuilderWhere : IQueryBuilderWhere
+    public sealed class MsSqlQueryBuilderWhere : IQueryBuilderWhere
     {
         #region Private fields
         private readonly IQueryQuotes _quotes;

@@ -2,7 +2,7 @@
 
 namespace DbQueryBuilder.MsSql
 {
-    internal sealed class MsSqlJoinBuilder : IJoinBuilder
+    public sealed class MsSqlJoinBuilder : IJoinBuilder
     {
         private SelectJoinType _joinType;
 

@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DbQueryBuilder.MsSql
 {
-    internal class MsSqlQueryBuilderUpdate : IQueryBuilderUpdate
+    public class MsSqlQueryBuilderUpdate : IQueryBuilderUpdate
     {
         #region Fields
 

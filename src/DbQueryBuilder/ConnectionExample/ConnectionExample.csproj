@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DbQueryBuilder.MsSql\DbQueryBuilder.MsSql.csproj" />
+    <ProjectReference Include="..\DbQueryBuilder\DbQueryBuilder.csproj" />
+  </ItemGroup>
+
+</Project>

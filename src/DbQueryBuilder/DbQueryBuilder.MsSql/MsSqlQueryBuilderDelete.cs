@@ -2,7 +2,7 @@
 
 namespace DbQueryBuilder.MsSql
 {
-    internal sealed class MsSqlQueryBuilderDelete : IQueryBuilderDelete
+    public sealed class MsSqlQueryBuilderDelete : IQueryBuilderDelete
     {
         #region Fields
 
