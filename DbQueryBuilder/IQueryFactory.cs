@@ -4,6 +4,12 @@
     {
         IQueryBuilderSelect CreateSelect();
 
+        IQueryBuilderInsert CreateInsert();
+
+        IQueryBuilderUpdate CreateUpdate();
+
+        IQueryBuilderDelete CreateDelete();
+
         IQueryBuilderWhere CreateWhere();
 
         IJoinBuilder CreateJoin();
