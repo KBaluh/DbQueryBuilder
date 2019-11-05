@@ -10,6 +10,8 @@ namespace DbQueryBuilder.MsSql
         private SqlConnection _connection;
         private readonly string _connectionString;
 
+        private SqlTransaction _transaction;
+
         private readonly Dictionary<IDataReader, SqlConnection> _readerConnections = new Dictionary<IDataReader, SqlConnection>();
 
         #endregion
@@ -90,6 +92,21 @@ namespace DbQueryBuilder.MsSql
         {
             IDataParameter parameter = new SqlParameter();
             return parameter;
+        }
+
+        public void BeginTransaction()
+        {
+            _transaction = _connection.BeginTransaction();
+        }
+
+        public void CommitTransaction()
+        {
+            _transaction.Commit();
+        }
+
+        public void Rollback()
+        {
+            _transaction.Rollback();
         }
 
         #endregion

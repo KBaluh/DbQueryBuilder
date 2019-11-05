@@ -19,5 +19,11 @@ namespace DbQueryBuilder
 
         IDbCommand CreateCommand();
         IDataParameter CreateParameter();
+
+        void BeginTransaction();
+
+        void CommitTransaction();
+
+        void Rollback();
     }
 }
